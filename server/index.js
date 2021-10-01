@@ -5,6 +5,8 @@
 const express = require('express');
 const morgan = require('morgan');
 
+const { addUser } = require('./userHandlers');
+
 //require handlers up here
 
 express()
@@ -15,12 +17,7 @@ express()
 
 // endpoints below
 
-.get('/hello', (req, res) => {
-    res.status(200).json({
-        status: 200,
-        message: 'hello you',
-    })
-})
+.post('/user', addUser)
 
 
 // endpoints above here ^^^^^
