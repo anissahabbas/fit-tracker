@@ -2,11 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import { BsSearch } from 'react-icons/bs';
 
-const SearchBar = () => {
+const SearchBar = ({ setValue }) => {
+    //setSearchBarInUse(true);
+    const handleChange = (e) => {
+        setValue(e.target.value)
+        
+    }
     return (
         <Wrapper>
             <TypeAheadWrapper>
-                <TypeAhead />
+                <TypeAhead
+                onChange={(e) => handleChange(e)}/>
                 <StyledIcon />
             </TypeAheadWrapper>
             <ListWrapper>

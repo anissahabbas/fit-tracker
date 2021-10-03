@@ -5,7 +5,9 @@
 const express = require('express');
 const morgan = require('morgan');
 
-const { addUser } = require('./userHandlers');
+const { getUserByEmail } = require('./handlers/userHandlers');
+const { getExercisesByUser, addExercise } = require('./handlers/exerciseHandlers');
+const { getWorkoutsByUser, addWorkout, getWorkoutsCompletedByUser } = require('./handlers/workoutHandlers');
 
 //require handlers up here
 
@@ -17,8 +19,15 @@ express()
 
 // endpoints below
 
-.post('/user', addUser)
+.get('/exercises/:userId', getExercisesByUser)
+.post('/exercises', addExercise)
 
+.get('/workouts/:userId', getWorkoutsByUser)
+.post('/workouts', addWorkout)
+
+.get('/workoutsCompleted/:userId', getWorkoutsCompletedByUser)
+
+.post('/user', getUserByEmail)
 
 // endpoints above here ^^^^^
 

@@ -14,7 +14,7 @@ export default function FormDialog() {
   const [exercise, setExercise] = React.useState('');
   const [tags, setTags] = React.useState('');
   const [notes, setNotes] = React.useState('');
-  const { user } = useAuth0();
+  const userId = sessionStorage.getItem('userId');
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -25,13 +25,21 @@ export default function FormDialog() {
   };
 
   const handleSave = () => {
-      //POST TO BACKEND GOES HERE
+    //POST TO BACKEND GOES HERE
     const newExercise = {
       name: exercise,
-      tags: tags.replace(/\s/g,'').split(','),
+      tags: tags.replace(/\s/g, '').split(','),
       notes: notes,
-      user_id: user.email
+      user_id: userId
     }
+    fetch('/exercises', {
+      method: 'POST',
+      body: JSON.stringify(newExercise),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
     setOpen(false)
   }
 
@@ -51,7 +59,7 @@ export default function FormDialog() {
             type="text"
             fullWidth
             variant="standard"
-            onChange={(e) => setExercise(e.target.value)}/>
+            onChange={(e) => setExercise(e.target.value)} />
           <StyledTextField
             autoFocus
             margin="dense"

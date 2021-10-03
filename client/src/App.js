@@ -4,7 +4,6 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react';
 import LandingPage from './LandingPage';
 import ExerciseList from './ExerciseList/index';
-import Header from './Header/index';
 import Footer from './Footer';
 import styled from 'styled-components';
 import WorkoutList from './WorkoutList/index';
@@ -12,6 +11,7 @@ import DoingWorkout from './DoingWorkout';
 import Stats from './Stats/index';
 import Settings from './Settings/index';
 import CompletedWorkout from './DoingWorkout/CompletedWorkout';
+import CreatingWorkout from './CreatingWorkout/index';
 
 const App = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -24,7 +24,6 @@ const App = () => {
     return (
       <BrowserRouter>
         <GlobalStyles />
-        <Header />
         <Container >
           <Switch>
             <Route path='/exerciseList'>
@@ -32,6 +31,9 @@ const App = () => {
             </Route>
             <Route path='/workoutList'>
               <WorkoutList />
+            </Route>
+            <Route path='/creatingWorkout'>
+              <CreatingWorkout />
             </Route>
             <Route path='/doingWorkout/:workoutId'>
               <DoingWorkout />

@@ -1,10 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Header = () => {
+const Header = ({ title }) => {
     return (
         <Wrapper>
-            <Title>HEADER</Title>
+            <Title
+                style={{
+                    'font-size':
+                        (title.length > 10) ?
+                            '40px' :
+                            '70px'
+                }}>{title}</Title>
         </Wrapper>
     )
 };
@@ -15,11 +21,13 @@ const Wrapper = styled.header`
     position: fixed;
     top: 0px;
     width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
 `;
 
 const Title = styled.h1`
     font-family: var(--header-font);
-    font-size: 70px;
     color: var(--primary-color);
     margin: 0 auto;
     text-align: center;
