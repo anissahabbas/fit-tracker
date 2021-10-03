@@ -29,6 +29,13 @@ express()
 
 .post('/user', getUserByEmail)
 
+//to Do
+.get('/workout/:workoutId')
+
+.post('/completedWorkouts')
+.post('/completedExercises')
+
+.get('/completedExercise/:exerciseId')
 // endpoints above here ^^^^^
 
 .get("*", (req, res) => {

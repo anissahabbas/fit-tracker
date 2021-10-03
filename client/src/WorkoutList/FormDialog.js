@@ -26,7 +26,6 @@ export default function FormDialog() {
   };
 
   const handleSave = () => {
-    //POST TO BACKEND GOES HERE
     setOpen(false)
     console.log(workoutName);
     history.push('/creatingWorkout');

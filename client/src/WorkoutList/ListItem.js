@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const ListItem = ({ listItem }) => {
+    console.log(listItem);
+    const hello = true;
     return (
         <>
         <Wrapper>
@@ -54,6 +56,12 @@ const Tag = styled.div`
     border-radius: 5px;
 `;
 
+const modalTag = styled.div`
+    font-size: 10px;
+    background-color: var(--tag-color);
+    padding: 3px 10px;
+    border-radius: 5px;
+`;
 
 const TagWrapper = styled.div`
     display: flex;

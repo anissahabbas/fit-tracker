@@ -5,14 +5,14 @@ import Header from '../Header/index';
 import ListItem from './ListItem';
 import FormDialog from './FormDialog';
 const WorkoutList = () => {
-    //const userId = sessionStorage.getItem('userId');
+    const userId = sessionStorage.getItem('userId');
     const [isLoaded, setIsLoaded] = React.useState(false);
     const [workouts, setWorkouts] = React.useState();
     const [searchValue, setSearchValue] = React.useState('');
 
 
     React.useEffect(() => {
-        const userId = '9999';
+        //const userId = '9999';
         fetch(`/workouts/${userId}`)
             .then(res => res.json())
             .then(data => {
@@ -33,23 +33,25 @@ const WorkoutList = () => {
             <Header title='Workouts' />
             <Wrapper>
                 <SearchBar
-                    setValue={setSearchValue}/>
+                    setValue={setSearchValue} />
                 {isLoaded &&
-                searchValue.length > 2 ?
-                workouts.map((listItem, ind) => {
-                    if (listItem.name.toLowerCase().includes(searchValue) || tagsIncludes(listItem.tags, searchValue)) {
-                        return (<ListWrapper>
-                            <ListItem
-                                listItem={listItem}
-                                key={ind} />
-                        </ListWrapper>)
-                    }
-                }) :
-                    <ListWrapper>
+                    searchValue.length > 2 ?
+                    workouts.map((listItem, ind) => {
+                        if (listItem.name.toLowerCase().includes(searchValue) || tagsIncludes(listItem.tags, searchValue)) {
+                            return (<ListWrapper>
+                                <ListItem
+                                    listItem={listItem}
+                                    key={ind} />
+                            </ListWrapper>)
+                        }
+                    }) :
+                    isLoaded &&
+                    workouts.length ? <ListWrapper>
                         {workouts.map((workout) => {
                             return <ListItem listItem={workout} />
                         })}
-                    </ListWrapper>}
+                    </ListWrapper> :
+                    <div>add an exercise!</div>}
                 <ButtonWrapper>
                     <FormDialog />
                 </ButtonWrapper>

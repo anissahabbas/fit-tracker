@@ -7,15 +7,18 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import styled from 'styled-components';
+import { NewWorkoutContext } from '../WorkoutList/NewWorkoutContext';
 
 export default function CreateNewModal() {
     const [open, setOpen] = React.useState(false);
-    const [exercise, setExercise] = React.useState('');
+    const [name, setName] = React.useState('');
     const [tags, setTags] = React.useState('');
     const [notes, setNotes] = React.useState('');
     const userId = sessionStorage.getItem('userId');
-    const [sets, setSets] = React.useState(0);
+    const [sets, setSets] = React.useState();
     const [reps, setReps] = React.useState();
+
+    const { setExerciseList, exerciseList } = React.useContext(NewWorkoutContext);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -25,8 +28,38 @@ export default function CreateNewModal() {
         setOpen(false);
     };
 
+    const handleResponse = (data) => {
+        setExerciseList(exerciseList.concat(data))
+    }
+    console.log(exerciseList);
+    
+    console.log(sets, reps)
     const handleSave = () => {
-        fetch('/exercises')
+        const newExercise = {
+            name: name,
+            tags: tags.length ? tags.replace(/\s/g, '').split(',') : '',
+            notes: notes,
+            sets: sets,
+            reps: reps,
+            user_id: userId,
+        }
+        fetch('/exercises', {
+            method: 'POST',
+            body: JSON.stringify(newExercise),
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              }
+        })
+        .then(res => res.json())
+        .then(data => handleResponse(data.data));
+
+        setOpen(false);
+        setName('');
+        setTags([]);
+        setNotes('');
+        setReps('');
+        setSets('');
     }
 
 
@@ -41,12 +74,12 @@ export default function CreateNewModal() {
                     <TextField
                         autoFocus
                         margin="dense"
-                        id="exercise"
+                        id="name"
                         label="Exercise Name"
                         type="text"
                         fullWidth
                         variant="standard"
-                        onChange={(e) => setExercise(e.target.value)} />
+                        onChange={(e) => setName(e.target.value)} />
                     <TextField
                         autoFocus
                         margin="dense"

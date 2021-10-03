@@ -28,7 +28,7 @@ export default function FormDialog() {
     //POST TO BACKEND GOES HERE
     const newExercise = {
       name: exercise,
-      tags: tags.replace(/\s/g, '').split(','),
+      tags: tags.length ? tags.replace(/\s/g, '').split(',') : '',
       notes: notes,
       user_id: userId
     }

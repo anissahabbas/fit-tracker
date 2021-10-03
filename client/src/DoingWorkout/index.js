@@ -1,7 +1,12 @@
 import React from 'react';
+import Header from '../Header/index';
 
 const DoingWorkout = () => {
-    return <div></div>
+        return (
+        <>
+        <Header title='hello'/>
+        </>
+    )
 };
 
 export default DoingWorkout;

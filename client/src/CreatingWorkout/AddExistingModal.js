@@ -1,4 +1,5 @@
 import * as React from 'react';
+import ExerciseList from '../ExerciseList/index';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import ListItemText from '@mui/material/ListItemText';
@@ -12,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
 import styled from 'styled-components';
+import AddExerciseModalContent from './AddExerciseModalContent';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -50,14 +52,18 @@ export default function AddExistingModal() {
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              Sound
+              Add an Exercise
             </Typography>
             <Button autoFocus color="inherit" onClick={handleClose}>
               save
             </Button>
           </Toolbar>
         </AppBar>
-        <List>
+        <ListWrapper>
+          <AddExerciseModalContent />
+
+        </ListWrapper>
+        {/* <List>
           <ListItem button>
             <ListItemText primary="Phone ringtone" secondary="Titania" />
           </ListItem>
@@ -68,11 +74,15 @@ export default function AddExistingModal() {
               secondary="Tethys"
             />
           </ListItem>
-        </List>
+        </List> */}
       </Dialog>
     </div>
   );
 }
+
+const ListWrapper = styled.div`
+  margin-top: -70px;
+`;
 
 const MainButton = styled.button`
     width: 250px;

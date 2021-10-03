@@ -1,13 +1,12 @@
 import React from 'react';
 import SearchBar from '../SearchBar';
 import { exerciseListData } from '../dummyData'
-import ListItem from './ListItem';
+import ListItem from '../ExerciseList/ListItem';
 import styled from 'styled-components';
-import FormDialog from './FormDialog';
 import { useAuth0 } from '@auth0/auth0-react';
 import Header from '../Header';
 
-const ExerciseList = () => {
+const AddExerciseModalContent = () => {
     const { user } = useAuth0();
     const [isLoaded, setIsLoaded] = React.useState(false);
     const [exercises, setExercises] = React.useState([]);
@@ -48,40 +47,36 @@ const ExerciseList = () => {
     }
     return (
         <>
-            <Header title='Exercises' />
             {isLoaded && <Wrapper>
                 <SearchBar
                     setValue={setSearchValue} />
                 {searchValue.length > 2 ?
                     exercises.map((listItem, ind) => {
                         if (listItem.name.toLowerCase().includes(searchValue) || tagsIncludes(listItem.tags, searchValue)) {
-                            return (
-                            <ListWrapper>
+                            return (<ListWrapper>
                                 <ListItem
                                     listItem={listItem}
-                                    key={ind} />
+                                    key={ind}
+                                    inModal={true} />
                             </ListWrapper>)
                         }
                     }) : (exercises.length) ?
                         <ListWrapper>
                             {exercises.map((listItem) => {
-                                return <ListItem listItem={listItem}
+                                return <ListItem
+                                    listItem={listItem}
+                                    inModal={true}
                                     key={listItem._id} />
                             })}
                         </ListWrapper>
                         : <Message>Click below to add your first exercise</Message>
                 }
             </Wrapper>}
-            <ButtonWrapper>
-                <FormDialog />
-            </ButtonWrapper>
-            <DialogWrapper>
-            </DialogWrapper>
         </>
     )
 }
 
-export default ExerciseList;
+export default AddExerciseModalContent;
 
 const Message = styled.div`
     padding-top: 50px;
@@ -107,16 +102,3 @@ const ButtonWrapper = styled.div`
     justify-content: flex-end;
     margin-right: 100px;
 `;
-/*
-const AddButton = styled.button`
-    position: fixed;
-    border: none;
-    height: 80px;
-    width: 80px;
-    border-radius: 40px;
-    bottom: 80px;
-    margin-right: 20px;
-    font-size: 70px;
-    background-color: var(--primary-color);
-
-`; */
