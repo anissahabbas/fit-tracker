@@ -33,12 +33,14 @@ const getExerciseCompletedById = async (req, res) => {
         const result = await db
             .collection('exercise-completed')
             .find( {$or: [
-                {user_id: userId, exercise_id: exerciseId}
+                {user_id: userId}
             ]})
             .toArray()
+        console.log(result);
+        const latestResult = '';
             sendResponse({
                 res,
-                status,
+                status: 200,
                 data: result,
                 message: 'exercise data found!'
             })

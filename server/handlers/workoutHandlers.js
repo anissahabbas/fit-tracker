@@ -1,7 +1,16 @@
 const { getListById, addItem } = require('./handlerUtils');
 const { sendResponse } = require('./utils');
-
 const { v4: uuidv4 } = require('uuid');
+
+//mongo stuff
+const { MongoClient } = require('mongodb');
+require('dotenv').config();
+const { MONGO_URI } = process.env;
+const options = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+};
+
 
 const getWorkoutsByUser = (req, res) => {
     getListById(req, res, 'workout-list');
@@ -20,4 +29,31 @@ const addWorkout = (req, res) => {
     addItem(req, res, 'workout-list', newWorkout);
 }
 
-module.exports = { getWorkoutsByUser, addWorkout, getWorkoutsCompletedByUser };
+const getWorkoutById = async (req, res) => {
+    try {
+        const _id = req.params.workoutId;
+        const client = new MongoClient(MONGO_URI, options);
+        await client.connect();
+        const db = client.db('FINAL-PROJECT');
+        console.log(_id);
+        const result = await db
+            .collection('workout-list')
+            .findOne({ _id })
+        sendResponse({
+            res,
+            status:200,
+            data: result,
+            message: 'workout found!'
+        })
+    } catch (err) {
+        console.log(err.stack);
+        sendResponse({
+            res,
+            status: 400,
+            data: result,
+            message: err.message
+        })
+    }
+}
+
+module.exports = { getWorkoutsByUser, addWorkout, getWorkoutsCompletedByUser, getWorkoutById };

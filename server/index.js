@@ -7,7 +7,8 @@ const morgan = require('morgan');
 
 const { getUserByEmail } = require('./handlers/userHandlers');
 const { getExercisesByUser, addExercise } = require('./handlers/exerciseHandlers');
-const { getWorkoutsByUser, addWorkout, getWorkoutsCompletedByUser } = require('./handlers/workoutHandlers');
+const { getWorkoutsByUser, addWorkout, getWorkoutsCompletedByUser, getWorkoutById } = require('./handlers/workoutHandlers');
+const { addCompletedWorkout, addCompletedExercise, getCompletedExercise } = require('./handlers/completedHandlers');
 
 //require handlers up here
 
@@ -25,17 +26,17 @@ express()
 .get('/workouts/:userId', getWorkoutsByUser)
 .post('/workouts', addWorkout)
 
-.get('/workoutsCompleted/:userId', getWorkoutsCompletedByUser)
 
 .post('/user', getUserByEmail)
 
 //to Do
-.get('/workout/:workoutId')
+.get('/workout/:workoutId', getWorkoutById)
 
-.post('/completedWorkouts')
-.post('/completedExercises')
+.post('/workoutsCompleted', addCompletedWorkout)
+.post('/exercisesCompleted', addCompletedExercise)
 
-.get('/completedExercise/:exerciseId')
+.get('/workoutsCompleted/:userId', getWorkoutsCompletedByUser)
+.get('/exerciseCompleted/:exerciseId/:userId', getCompletedExercise) 
 // endpoints above here ^^^^^
 
 .get("*", (req, res) => {
