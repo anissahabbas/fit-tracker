@@ -26,7 +26,7 @@ const AddExerciseModalContent = () => {
             .then(data => {
                 sessionStorage.setItem('userId', data.data[0]._id)
             });
-    })
+    }, [])
 
     React.useEffect(() => {
         const userId = sessionStorage.getItem('userId');
@@ -69,7 +69,7 @@ const AddExerciseModalContent = () => {
                                     key={listItem._id} />
                             })}
                         </ListWrapper>
-                        : <Message>Click below to add your first exercise</Message>
+                        : ''
                 }
             </Wrapper>}
         </>

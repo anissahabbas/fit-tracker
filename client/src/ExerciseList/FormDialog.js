@@ -25,7 +25,6 @@ export default function FormDialog() {
   };
 
   const handleSave = () => {
-    //POST TO BACKEND GOES HERE
     const newExercise = {
       name: exercise,
       tags: tags.length ? tags.replace(/\s/g, '').split(',') : '',
@@ -40,7 +39,9 @@ export default function FormDialog() {
         "Content-Type": "application/json",
       },
     });
+    //UPDATE EXERCISES AGAIN (...EXERCISES, NEWEXERCISE)
     setOpen(false)
+    window.location.reload();
   }
 
   return (

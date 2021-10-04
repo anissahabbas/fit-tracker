@@ -14,9 +14,7 @@ const ListItem = ({ listItem, inModal }) => {
             reps: reps,
             sets: sets,
         }));
-        console.log(exerciseList);
     }
-
     return (
         <>
             <Wrapper>
@@ -25,7 +23,8 @@ const ListItem = ({ listItem, inModal }) => {
                 </NameWrapper>
                 {!inModal &&
                     <TagWrapper>
-                        {listItem.tags.map((tag) => {
+                        {listItem.tags && 
+                        listItem.tags.map((tag) => {
                             return <Tag>{tag}</Tag>
                         })}
                     </TagWrapper>}

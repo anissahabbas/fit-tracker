@@ -1,20 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const ListItem = ({ listItem }) => {
-    console.log(listItem);
-    const hello = true;
     return (
         <>
-        <Wrapper>
+        <Wrapper to={`/doingWorkout/${listItem._id}`}>
             <NameWrapper>
                 <Name>{listItem.name}</Name>
             </NameWrapper>
+            {listItem.tags &&
             <TagWrapper>
                 {listItem.tags.map((tag) => {
                     return <Tag>{tag}</Tag>
                 })}
-            </TagWrapper>
+            </TagWrapper>}
         </Wrapper>
         <Notes>{listItem.notes}</Notes>
         </>
@@ -23,8 +23,10 @@ const ListItem = ({ listItem }) => {
 
 export default ListItem;
 
-const Wrapper = styled.div`
+const Wrapper = styled(Link)`
     display: flex;
+    color: inherit;
+    text-decoration: none;
     font-family: var(--primary-font);
     align-items: center;
     justify-content: space-between;

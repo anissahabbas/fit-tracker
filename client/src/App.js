@@ -11,6 +11,7 @@ import DoingWorkout from './DoingWorkout';
 import Stats from './Stats/index';
 import Settings from './Settings/index';
 import CompletedWorkout from './DoingWorkout/CompletedWorkout';
+import { Redirect } from "react-router";
 import CreatingWorkout from './CreatingWorkout/index';
 
 const App = () => {
@@ -26,6 +27,9 @@ const App = () => {
         <GlobalStyles />
         <Container >
           <Switch>
+          <Route exact path='/'>
+              <Redirect to='/exerciseList' />
+            </Route>
             <Route path='/exerciseList'>
               <ExerciseList />
             </Route>

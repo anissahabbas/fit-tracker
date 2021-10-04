@@ -41,7 +41,7 @@ const getUserByEmail = async (req, res) => {
             sendResponse({
                 res,
                 status: 200,
-                data: newUser,
+                data: [newUser],
                 message: 'new user added!'
             })
         }

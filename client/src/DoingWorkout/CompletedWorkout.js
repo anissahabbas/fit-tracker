@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CompletedWorkout = () => {
-    return <div></div>
+    return <div>Congrats!</div>
 };
 
 export default CompletedWorkout;

@@ -41,7 +41,7 @@ const CreatingWorkout = () => {
     const handleStart = async () => {
         const newWorkout = {
             name: workoutName,
-            tags: tags.length ? tags.replace(/\s/g, '').split(',') : '',
+            tags: tags ? tags.replace(/\s/g, '').split(',') : '',
             exerciseList: exerciseList,
             user_id: userId
         }
@@ -71,7 +71,7 @@ const CreatingWorkout = () => {
                 <CreateNewWrapper>
                     <CreateNewModal />
                 </CreateNewWrapper>
-                {exerciseList.length &&
+                {exerciseList &&
                     <ListWrapper>
                         {exerciseList.map((listItem, ind) => {
                             return <ListItem
@@ -79,10 +79,11 @@ const CreatingWorkout = () => {
                                 key={ind} />
                         })}
                     </ListWrapper>}
-                <ButtonWrapper>
+                {exerciseList.length ?
+                    <ButtonWrapper>
                     <Button onClick={handleSave}>Save</Button>
                     <Button onClick={handleStart}>Save & Start</Button>
-                </ButtonWrapper>
+                </ButtonWrapper> : ''}
             </Wrapper>
 
         </>

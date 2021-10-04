@@ -17,6 +17,7 @@ const LandingPage = () => {
             <ButtonWrapper>
                 <LoginButton />
             </ButtonWrapper>
+            <Text>Let Your Fitness Journey Begin!</Text>
         </Wrapper>
 
     )
@@ -24,6 +25,12 @@ const LandingPage = () => {
 
 export default LandingPage;
 
+const Text = styled.h1`
+    font-family: 'Inter', sans-serif;
+    color: black;
+    font-size: 100px;
+    margin-top: 300px;
+`;
 
 const Wrapper = styled.div`
     display: flex;
@@ -46,18 +53,7 @@ const ButtonWrapper = styled.div`
     height: 100vh;
 `;
 
-const SignUpButton = styled.button`
-    margin-top: 3%;
-    width: 50%;
-    height: 40px;
-    background-color: lightgrey;
-    font-family: var(--primary-font);
-    font-size: 20px;
-    border-radius: 12px;
-    box-shadow: .5px 1px 5px #888888;
-    color: white;
-    border: none;
-`;
+
 
 
 

@@ -10,7 +10,6 @@ const WorkoutList = () => {
     const [workouts, setWorkouts] = React.useState();
     const [searchValue, setSearchValue] = React.useState('');
 
-
     React.useEffect(() => {
         //const userId = '9999';
         fetch(`/workouts/${userId}`)
@@ -28,6 +27,7 @@ const WorkoutList = () => {
         })
     }
 
+    console.log(workouts, 'gey')
     return (
         <>
             <Header title='Workouts' />
