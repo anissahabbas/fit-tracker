@@ -4,6 +4,8 @@ import { useParams, useHistory } from 'react-router-dom';
 import { CurrentWorkoutContext } from './CurrentWorkoutContext';
 import CurrentExercise from './CurrentExercise';
 import styled from 'styled-components';
+import StopWatch from './StopWatch';
+import Timer from './Timer';
 
 const DoingWorkout = () => {
     const { workoutId } = useParams();
@@ -50,6 +52,10 @@ const DoingWorkout = () => {
     return (!isLoading &&
         <>
             <Header title={currentWorkoutName} />
+            <TimerWrapper >
+                <StopWatch />
+               {/*  <Timer /> */}
+            </TimerWrapper>
             <ListWrapper>
                 {exerciseData.map((ex, ind) => {
                     return <CurrentExercise
@@ -70,8 +76,15 @@ const DoingWorkout = () => {
 
 export default DoingWorkout;
 
+const TimerWrapper = styled.div`
+    display: flex;
+    margin: 0 20px;
+    margin-top: 100px;
+    justify-content: space-around;
+`;
+
 const ListWrapper = styled.div`
-    margin-top: 80px;
+    margin-top: 50px;
 `;
 
 const ButtonWrapper = styled.div`

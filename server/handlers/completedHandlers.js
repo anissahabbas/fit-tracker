@@ -1,6 +1,7 @@
 const { sendResponse } = require('./utils');
 const { addItem } = require('./handlerUtils');
 const { v4: uuidv4 } = require('uuid');
+const  moment  = require('moment');
 
 //mongo stuff
 const { MongoClient } = require('mongodb');
@@ -16,6 +17,7 @@ const addCompletedWorkout = (req, res) => {
     const newCompletedWorkout = {
         _id: uuidv4(),
         date: new Date(),
+        displayDate: moment().format("MMMM Do YYYY, h:mm:ss a"),
         ...req.body
     }
     addItem(req, res, 'workouts-completed', newCompletedWorkout);

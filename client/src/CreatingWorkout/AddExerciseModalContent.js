@@ -1,10 +1,8 @@
 import React from 'react';
 import SearchBar from '../SearchBar';
-import { exerciseListData } from '../dummyData'
 import ListItem from '../ExerciseList/ListItem';
 import styled from 'styled-components';
 import { useAuth0 } from '@auth0/auth0-react';
-import Header from '../Header';
 
 const AddExerciseModalContent = () => {
     const { user } = useAuth0();

@@ -12,7 +12,6 @@ const ExerciseList = () => {
     const [isLoaded, setIsLoaded] = React.useState(false);
     const [exercises, setExercises] = React.useState([]);
     const [searchValue, setSearchValue] = React.useState('');
-    const [newExercise, setNewExercise] = React.useState(false);
 
     React.useEffect(() => {
         fetch('/user', {
@@ -40,7 +39,7 @@ const ExerciseList = () => {
             )
     }, [])
 
- 
+
 
     const tagsIncludes = (tags, value) => {
         return tags.some((tag) => {
@@ -57,7 +56,7 @@ const ExerciseList = () => {
                     {searchValue.length > 2 ?
                         exercises.map((listItem, ind) => {
                             if (listItem.name.toLowerCase().includes(searchValue) || tagsIncludes(listItem.tags, searchValue)) {
-                                return ( isLoaded &&
+                                return (isLoaded &&
                                     <ListWrapper>
                                         <ListItem
                                             listItem={listItem}
@@ -75,8 +74,9 @@ const ExerciseList = () => {
                     }
                 </Wrapper>}
             <ButtonWrapper>
-                <FormDialog setNewExercise={setNewExercise}
-                newExercise={newExercise}/>
+                <FormDialog
+                    setExercises={setExercises}
+                    exercises={exercises} />
             </ButtonWrapper>
             <DialogWrapper>
             </DialogWrapper>

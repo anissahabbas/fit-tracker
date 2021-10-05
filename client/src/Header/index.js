@@ -24,6 +24,7 @@ const Wrapper = styled.header`
     height: 100px;
     display: flex;
     align-items: center;
+    background-color: white;
 `;
 
 const Title = styled.h1`

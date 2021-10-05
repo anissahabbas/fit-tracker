@@ -9,7 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { styled } from '@mui/system';
 import { useAuth0 } from '@auth0/auth0-react';
 
-export default function FormDialog() {
+export default function FormDialog({exercises, setExercises}) {
   const [open, setOpen] = React.useState(false);
   const [exercise, setExercise] = React.useState('');
   const [tags, setTags] = React.useState('');
@@ -39,9 +39,7 @@ export default function FormDialog() {
         "Content-Type": "application/json",
       },
     });
-    //UPDATE EXERCISES AGAIN (...EXERCISES, NEWEXERCISE)
     setOpen(false)
-    window.location.reload();
   }
 
   return (

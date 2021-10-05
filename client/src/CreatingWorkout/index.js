@@ -12,7 +12,6 @@ const CreatingWorkout = () => {
     const { workoutName, exerciseList, tags } = useContext(NewWorkoutContext);
     const userId = sessionStorage.getItem('userId')
     const history = useHistory();
-    const [ workoutData, setWorkoutData] = React.useState();
     const { setCurrentWorkoutId } = useContext(CurrentWorkoutContext);
 
 
