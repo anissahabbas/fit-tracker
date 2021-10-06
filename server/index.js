@@ -10,13 +10,13 @@ const { getExercisesByUser, addExercise } = require('./handlers/exerciseHandlers
 const { getWorkoutsByUser, addWorkout, getWorkoutsCompletedByUser, getWorkoutById } = require('./handlers/workoutHandlers');
 const { addCompletedWorkout, addCompletedExercise, getCompletedExercise } = require('./handlers/completedHandlers');
 const { getStats } = require('./handlers/statsHandlers');
+const { deleteWorkout } = require('./handlers/deleteHandlers');
 
 //require handlers up here
 
 express()
 .use(morgan('tiny'))
 .use(express.json())
-
 .use(express.static("public"))
 
 // endpoints below
@@ -32,6 +32,7 @@ express()
 .get('/workoutsCompleted/:userId', getWorkoutsCompletedByUser)
 .get('/exerciseCompleted/:exerciseId/:userId', getCompletedExercise)
 .get('/stats/:userId', getStats)
+.delete('/workout/:workoutId', deleteWorkout)
 // endpoints above here ^^^^^
 
 .get("*", (req, res) => {
