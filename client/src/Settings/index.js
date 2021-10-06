@@ -18,7 +18,7 @@ const Settings = () => {
 export default Settings;
 
 const Wrapper = styled.div`
-    height: 100%;
+    height: 700px;
     display: flex;
     justify-content: center;
     align-items: center;

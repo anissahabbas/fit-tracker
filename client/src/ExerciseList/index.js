@@ -1,6 +1,5 @@
 import React from 'react';
 import SearchBar from '../SearchBar';
-import { exerciseListData } from '../dummyData'
 import ListItem from './ListItem';
 import styled from 'styled-components';
 import FormDialog from './FormDialog';
@@ -12,6 +11,7 @@ const ExerciseList = () => {
     const [isLoaded, setIsLoaded] = React.useState(false);
     const [exercises, setExercises] = React.useState([]);
     const [searchValue, setSearchValue] = React.useState('');
+    const [currentUser, setCurrentUser] = React.useState('')
 
     React.useEffect(() => {
         fetch('/user', {
@@ -26,9 +26,6 @@ const ExerciseList = () => {
             .then(data => {
                 sessionStorage.setItem('userId', data.data[0]['_id'])
             });
-    }, [])
-
-    React.useEffect(() => {
         const userId = sessionStorage.getItem('userId');
         fetch(`/exercises/${userId}`)
             .then(res => res.json())
@@ -37,14 +34,17 @@ const ExerciseList = () => {
                 setIsLoaded(true);
             }
             )
-    }, [])
+    }, [isLoaded])
 
-
+    console.log(exercises.length, isLoaded);
+    console.log(exercises);
 
     const tagsIncludes = (tags, value) => {
-        return tags.some((tag) => {
-            return tag.toLowerCase().includes(value);
-        })
+        if (tags) {
+            return tags.some((tag) => {
+                return tag.toLowerCase().includes(value);
+            })
+        }
     }
     return (
         <>
@@ -55,7 +55,7 @@ const ExerciseList = () => {
                         setValue={setSearchValue} />
                     {searchValue.length > 2 ?
                         exercises.map((listItem, ind) => {
-                            if (listItem.name.toLowerCase().includes(searchValue) || tagsIncludes(listItem.tags, searchValue)) {
+                            if (listItem.name.toLowerCase().includes(searchValue.toLowerCase()) || tagsIncludes(listItem.tags, searchValue.toLowerCase())) {
                                 return (isLoaded &&
                                     <ListWrapper>
                                         <ListItem
@@ -63,14 +63,15 @@ const ExerciseList = () => {
                                             key={ind} />
                                     </ListWrapper>)
                             }
-                        }) : (exercises.length) ?
+                        }) : (exercises.length && isLoaded) ?
                             <ListWrapper>
                                 {exercises.map((listItem) => {
-                                    return <ListItem listItem={listItem}
+                                    return <ListItem
+                                        listItem={listItem}
                                         key={listItem._id} />
                                 })}
                             </ListWrapper>
-                            : <Message>Click below to add your first exercise</Message>
+                            : ''
                     }
                 </Wrapper>}
             <ButtonWrapper>

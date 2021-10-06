@@ -30,7 +30,7 @@ export default function LastExerciseModal({ id }) {
     };
 
     return (
-        <div>
+        <Wrapper>
             <Button onClick={handleClickOpen}
                 style={{
                     'color': 'var(--primary-color)',
@@ -52,7 +52,10 @@ export default function LastExerciseModal({ id }) {
                     {exerciseInfo ?
                         <DialogContentText>
                             <Text>
-                                Weight Used: {exerciseInfo.weight}</Text>
+                                Weight Used: {exerciseInfo.weight}
+                                <p>Sets: {exerciseInfo.sets}, Reps: {exerciseInfo.reps}</p>
+                            </Text>
+
                             <Text>
                                 Notes: {exerciseInfo.notes}
                             </Text>
@@ -65,10 +68,14 @@ export default function LastExerciseModal({ id }) {
                     <Button onClick={handleClose}>close</Button>
                 </DialogActions>
             </Dialog>
-        </div>
+        </Wrapper>
     );
 }
 
 const Text = styled.div`
 
+`;
+
+const Wrapper = styled.div`
+    z-index: -5;
 `;

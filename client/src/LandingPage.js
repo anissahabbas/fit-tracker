@@ -5,12 +5,6 @@ import { useAuth0 } from '@auth0/auth0-react';
 import LoginButton from './LoginButton';
 
 const LandingPage = () => {
-    const { loginWithRedirect } = useAuth0();
-
-    const handleLogin = () => {
-        loginWithRedirect()
-    }
-
     return (
         <Wrapper>
             <Logo src={logo} />

@@ -56,7 +56,6 @@ export default function AddExistingModal() {
         </AppBar>
         <ListWrapper>
           <AddExerciseModalContent />
-
         </ListWrapper>
         {/* <List>
           <ListItem button>

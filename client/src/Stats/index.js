@@ -18,14 +18,6 @@ const Stats = () => {
             })
     }, [])
 
-    const today = new Date();
-    console.log(today.getMonth());
-
-   /*  const thisWeek = workoutData.filter((workout) =>{
-        workout.date.getTime() > 
-    }) */
-    
-
     return (
         <>
             <Header title={'Your Stats'} />

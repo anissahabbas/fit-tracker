@@ -5,7 +5,6 @@ import { CurrentWorkoutContext } from './CurrentWorkoutContext';
 import CurrentExercise from './CurrentExercise';
 import styled from 'styled-components';
 import StopWatch from './StopWatch';
-import Timer from './Timer';
 
 const DoingWorkout = () => {
     const { workoutId } = useParams();
@@ -50,7 +49,7 @@ const DoingWorkout = () => {
     }
 
     return (!isLoading &&
-        <>
+        <Wrapper>
             <Header title={currentWorkoutName} />
             <TimerWrapper >
                 <StopWatch />
@@ -70,11 +69,15 @@ const DoingWorkout = () => {
                 </CompleteWorkout>
 
             </ButtonWrapper>
-        </>
+        </Wrapper>
     )
 };
 
 export default DoingWorkout;
+
+const Wrapper = styled.div`
+    z-index: 0;
+`;
 
 const TimerWrapper = styled.div`
     display: flex;

@@ -3,11 +3,10 @@ import styled from 'styled-components';
 import { BsSearch } from 'react-icons/bs';
 
 const SearchBar = ({ setValue }) => {
-    //setSearchBarInUse(true);
     const handleChange = (e) => {
-        setValue(e.target.value)
-        
-    }
+        setValue(e.target.value);
+    };
+    
     return (
         <Wrapper>
             <TypeAheadWrapper>

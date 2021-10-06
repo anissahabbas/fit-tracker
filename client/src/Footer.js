@@ -31,6 +31,7 @@ const Footer = () => {
 export default Footer;
 
 const Wrapper = styled.footer`
+    margin-top: 80px;
 `;
 
 const NavBar = styled.div`
@@ -45,5 +46,8 @@ const NavBar = styled.div`
 
 const NavItem = styled(NavLink)`
     color: var(--primary-color);
+    &.active {
+        color: purple;
+    }
 
 `;

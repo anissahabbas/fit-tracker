@@ -2,22 +2,29 @@ import React from 'react';
 import LastExerciseModal from './LastExerciseModal';
 import NotesModal from './NotesModal';
 import styled from 'styled-components';
+import UpdatePopUp from './UpdatePopUp';
 
 const CurrentExercise = ({ item }) => {
     const [currentWeight, setCurrentWeight] = React.useState();
     const [notes, setNotes] = React.useState();
+    const [sets, setSets] = React.useState(item.sets);
+    const [reps, setReps] = React.useState(item.reps);
+    const [isComplete, setIsComplete] = React.useState(false);
     const userId = sessionStorage.getItem('userId')
     console.log(item);
     const { _id, name, tags } = item;
     console.log(_id);
 
     const handleClick = () => {
+        console.log('click!');
         const newCompletedExercise = {
             exercise_id: _id,
             user_id: userId,
             name: name,
             notes: notes,
             tags: tags,
+            sets,
+            reps,
             weight: currentWeight,
         }
         fetch('/exercisesCompleted', {
@@ -28,26 +35,38 @@ const CurrentExercise = ({ item }) => {
                 "Content-Type": "application/json",
             }
         })
+        setIsComplete(true);
     }
 
     return (
-        <Wrapper>
+        <Wrapper
+            style={{ 'color': isComplete ? 'grey' : '' }}>
             <LeftWrapper>
                 <Name>{item.name}</Name>
                 <Notes>{item.notes}</Notes>
                 <WeightWrapper>
                     <WeightTitle>Weight Used: </WeightTitle>
                     <WeightInput onChange={(e) => setCurrentWeight(e.target.value)} />
-                    <WeightButton onClick={handleClick}>Complete</WeightButton>
+                    {isComplete ?
+                        <DisabledButton>Complete</DisabledButton> :
+                        <WeightButton onClick={handleClick}>Complete</WeightButton>}
                 </WeightWrapper>
 
             </LeftWrapper>
             <InfoWrapper>
-                <Sets>Sets: {item.sets}</Sets>
-                <Reps>Reps: {item.reps}</Reps>
+                <SetWrapper>
+                    <Sets>Sets: {sets}</Sets>
+                    <UpdatePopUp setValue={setSets}
+                        isComplete={isComplete} />
+                </SetWrapper>
+                <SetWrapper>
+                    <Reps>Reps: {reps}</Reps>
+                    <UpdatePopUp setValue={setReps}
+                        isComplete={isComplete} />
+                </SetWrapper>
                 <ModalWrapper>
-                    <LastExerciseModal id={item._id}/>
-                    <NotesModal setNotes={setNotes}/>
+                    <LastExerciseModal id={item._id} />
+                    <NotesModal setNotes={setNotes} />
                 </ModalWrapper>
             </InfoWrapper>
         </Wrapper>
@@ -55,6 +74,11 @@ const CurrentExercise = ({ item }) => {
 }
 
 export default CurrentExercise;
+
+
+const SetWrapper = styled.div`
+    display: flex;
+`;
 
 const WeightWrapper = styled.div`
     margin-top: 15px;
@@ -71,6 +95,11 @@ const WeightButton = styled.button`
     border: none;
     padding: 3px 10px;
     background-color: var(--tag-color-1);
+`;
+
+const DisabledButton = styled(WeightButton)`
+    disabled: true;
+    background-color: #BAC4E5;
 `;
 
 const WeightTitle = styled.p`

@@ -4,10 +4,8 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { styled } from '@mui/system';
-import { useAuth0 } from '@auth0/auth0-react';
 
 export default function FormDialog({exercises, setExercises}) {
   const [open, setOpen] = React.useState(false);
@@ -40,6 +38,7 @@ export default function FormDialog({exercises, setExercises}) {
       },
     });
     setOpen(false)
+    window.location.reload();
   }
 
   return (

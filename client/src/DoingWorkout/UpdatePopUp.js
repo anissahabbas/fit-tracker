@@ -1,12 +1,12 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import styled from 'styled-components';
 
-export default function NotesModal({setNotes}) {
+export default function UpdatePopUp({setValue, isComplete}) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -20,23 +20,21 @@ export default function NotesModal({setNotes}) {
   return (
     <div>
       <Button onClick={handleClickOpen}
-      style={{'color' : 'var(--primary-color)',
-                'font-size': '10px',
-                'padding': '0px'}}>
-        Add Notes
-        
+      style={{ 'color': isComplete ? 'grey' : '' }}
+      >
+        +
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Add Notes</DialogTitle>
+        <DialogTitle>Update Sets</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
             margin="dense"
-            id="name"
-            type="test"
+            id="sets"
+            type="text"
             fullWidth
             variant="standard"
-            onChange={(e) => setNotes(e.target.value)}
+            onChange={(e) => setValue(e.target.value)}
           />
         </DialogContent>
         <DialogActions>
@@ -47,3 +45,10 @@ export default function NotesModal({setNotes}) {
     </div>
   );
 }
+
+const Button = styled.button`
+  border: none;
+  background-color: white;
+  font-size: 18px;
+  
+`;

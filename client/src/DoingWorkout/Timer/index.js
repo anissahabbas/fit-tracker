@@ -50,7 +50,6 @@ const Timer = () => {
 export default Timer;
 
 const Wrapper = styled.div`
-
     width: 125px;
     height: 125px;
     border-radius: 67.5px;

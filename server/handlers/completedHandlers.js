@@ -14,9 +14,11 @@ const options = {
 
 
 const addCompletedWorkout = (req, res) => {
+    const date = new Date();
     const newCompletedWorkout = {
         _id: uuidv4(),
         date: new Date(),
+        month: date.getMonth(),
         displayDate: moment().format("MMMM Do YYYY, h:mm:ss a"),
         ...req.body
     }
@@ -24,9 +26,12 @@ const addCompletedWorkout = (req, res) => {
 }
 
 const addCompletedExercise = (req, res) => {
+    const date = new Date();
     const newCompletedExercise = {
         _id: uuidv4(),
         date: new Date(),
+        month: date.getMonth(),
+        displayDate: moment().format("MMMM Do YYYY, h:mm:ss a"),
         ...req.body
     }
     addItem(req, res, 'exercises-completed', newCompletedExercise)

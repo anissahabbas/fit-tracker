@@ -25,34 +25,32 @@ const App = () => {
     return (
       <BrowserRouter>
         <GlobalStyles />
-        <Container >
-          <Switch>
+        <Switch>
           <Route exact path='/'>
-              <Redirect to='/exerciseList' />
-            </Route>
-            <Route path='/exerciseList'>
-              <ExerciseList />
-            </Route>
-            <Route path='/workoutList'>
-              <WorkoutList />
-            </Route>
-            <Route path='/creatingWorkout'>
-              <CreatingWorkout />
-            </Route>
-            <Route path='/doingWorkout/:workoutId'>
-              <DoingWorkout />
-            </Route>
-            <Route path='/stats'>
-              <Stats />
-            </Route>
-            <Route path='/settings'>
-              <Settings />
-            </Route>
-            <Route path='/completedWorkout'>
-              <CompletedWorkout />
-            </Route>
-          </Switch>
-        </Container>
+            <Redirect to='/exerciseList' />
+          </Route>
+          <Route path='/exerciseList'>
+            <ExerciseList />
+          </Route>
+          <Route path='/workoutList'>
+            <WorkoutList />
+          </Route>
+          <Route path='/creatingWorkout'>
+            <CreatingWorkout />
+          </Route>
+          <Route path='/doingWorkout/:workoutId'>
+            <DoingWorkout />
+          </Route>
+          <Route path='/stats'>
+            <Stats />
+          </Route>
+          <Route path='/settings'>
+            <Settings />
+          </Route>
+          <Route path='/completedWorkout'>
+            <CompletedWorkout />
+          </Route>
+        </Switch>
         <Footer />
       </BrowserRouter>
     );
@@ -72,6 +70,3 @@ const App = () => {
 };
 export default App;
 
-const Container = styled.div`
-  height: 600px;
-`;
