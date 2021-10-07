@@ -35,25 +35,24 @@ const getWorkoutById = async (req, res) => {
         const client = new MongoClient(MONGO_URI, options);
         await client.connect();
         const db = client.db('FINAL-PROJECT');
-        console.log(_id);
         const result = await db
             .collection('workout-list')
             .findOne({ _id })
         sendResponse({
             res,
-            status:200,
+            status: 200,
             data: result,
             message: 'workout found!'
-        })
+        });
     } catch (err) {
-        console.log(err.stack);
         sendResponse({
             res,
             status: 400,
             data: result,
             message: err.message
-        })
-    }
-}
+        });
+       client.close();
+    };
+};
 
 module.exports = { getWorkoutsByUser, addWorkout, getWorkoutsCompletedByUser, getWorkoutById };

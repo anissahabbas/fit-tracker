@@ -51,7 +51,6 @@ const addItem = async (req, res, collectionName, newItem) => {
     });
   }
   catch (err) {
-    console.log(err.stack);
     sendResponse({
       res,
       status: 400,

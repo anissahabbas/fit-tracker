@@ -8,6 +8,8 @@ const options = {
     useUnifiedTopology: true,
 };
 
+//not implemented in front end yet 
+//will be for after the bootcamp!
 const deleteItem = async (req, res) => {
     try {
         const _id = req.params.workoutId;
@@ -32,6 +34,7 @@ const deleteItem = async (req, res) => {
 const deleteWorkout = (req, res) => {
     deleteItem(req, res, 'workout-list');
 }
+
 
 const deleteExercise = (req, res) => {
     deleteExercise = (req, res, 'exercise-list')

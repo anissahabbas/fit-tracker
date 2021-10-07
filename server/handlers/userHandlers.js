@@ -1,15 +1,14 @@
-const e = require('express');
+const { v4: uuidv4 } = require('uuid');
+const { sendResponse } = require('./utils');
+
 const { MongoClient } = require('mongodb');
 require('dotenv').config();
 const { MONGO_URI } = process.env;
-const { v4: uuidv4 } = require('uuid');
-
 const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 };
 
-const { sendResponse } = require('./utils');
 
 const getUserByEmail = async (req, res) => {
     try {

@@ -1,7 +1,7 @@
 const { sendResponse } = require('./utils');
 const { addItem } = require('./handlerUtils');
 const { v4: uuidv4 } = require('uuid');
-const  moment  = require('moment');
+const moment = require('moment');
 
 //mongo stuff
 const { MongoClient } = require('mongodb');
@@ -41,7 +41,6 @@ const getCompletedExercise = async (req, res) => {
     try {
         const user_id = req.params.userId;
         const exercise_id = req.params.exerciseId;
-        console.log(exercise_id);
         const client = new MongoClient(MONGO_URI, options);
         await client.connect();
         const db = client.db('FINAL-PROJECT');
@@ -62,14 +61,13 @@ const getCompletedExercise = async (req, res) => {
             message: 'exercise data found!'
         })
     } catch (err) {
-        console.log(err.stack)
         sendResponse({
             res,
             status: 500,
             dataSent: '',
             message: err.message
         })
-
+        client.close();
     }
 }
 

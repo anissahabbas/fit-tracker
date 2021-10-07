@@ -1,4 +1,3 @@
-const assert = require('assert');
 const { MongoClient } = require('mongodb');
 
 const { sendResponse, createMonthData, getMostCommon } = require('./utils');
@@ -24,11 +23,9 @@ const getStats = async (req, res) => {
             .toArray();
         const exerciseList = await db
             .collection('exercises-completed')
-            .find({ $or: [{user_id: userId}]})
+            .find({ $or: [{ user_id: userId }] })
             .toArray();
         client.close();
-        console.log(exerciseList, 'hit');
-        console.log(workoutList, 'hit');
         const monthData = createMonthData(workoutList);
         const totalWorkouts = workoutList.length
         const workoutsThisMonth = workoutList.filter((workout) => workout.month === today.getMonth()).length;
@@ -36,7 +33,7 @@ const getStats = async (req, res) => {
         const exercisesThisMonth = exerciseList.filter((exercise) => exercise.month === today.getMonth()).length;
         const mostCommonWorkout = getMostCommon(workoutList).name;
         const mostCommonExercise = getMostCommon(exerciseList).name;
-       sendResponse({
+        sendResponse({
             res,
             status: 200,
             message: 'data found!',
@@ -49,14 +46,14 @@ const getStats = async (req, res) => {
                 exercisesThisMonth,
                 totalExercises
             }
-          });
+        });
     } catch (err) {
-           sendResponse({
+        sendResponse({
             res,
             status: 500,
             message: err.message,
             data: []
-          })
+        })
     }
 };
 
