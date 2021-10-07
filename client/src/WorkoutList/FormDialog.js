@@ -4,17 +4,14 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { styled } from '@mui/system';
-import { useAuth0 } from '@auth0/auth0-react';
 import { NewWorkoutContext } from './NewWorkoutContext';
 import { useHistory } from 'react-router';
 
 export default function FormDialog() {
   const [open, setOpen] = React.useState(false);
-  const { workoutName, setWorkoutName, setTags } = React.useContext(NewWorkoutContext);
-  const userId = sessionStorage.getItem('userId');
+  const { setWorkoutName, setTags } = React.useContext(NewWorkoutContext);
   const history = useHistory();
 
   const handleClickOpen = () => {
@@ -27,7 +24,6 @@ export default function FormDialog() {
 
   const handleSave = () => {
     setOpen(false)
-    console.log(workoutName);
     history.push('/creatingWorkout');
   }
 

@@ -6,7 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 
-export default function NotesModal({setNotes}) {
+export default function NotesModal({ setNotes }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -20,11 +20,12 @@ export default function NotesModal({setNotes}) {
   return (
     <div>
       <Button onClick={handleClickOpen}
-      style={{'color' : 'var(--primary-color)',
-                'font-size': '10px',
-                'padding': '0px'}}>
+        style={{
+          'color': 'var(--primary-color)',
+          'font-size': '10px',
+          'padding': '0px'
+        }}>
         Add Notes
-        
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Add Notes</DialogTitle>

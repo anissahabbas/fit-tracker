@@ -11,7 +11,6 @@ const ExerciseList = () => {
     const [isLoaded, setIsLoaded] = React.useState(false);
     const [exercises, setExercises] = React.useState([]);
     const [searchValue, setSearchValue] = React.useState('');
-    const [currentUser, setCurrentUser] = React.useState('')
 
     React.useEffect(() => {
         fetch('/user', {
@@ -35,9 +34,6 @@ const ExerciseList = () => {
             }
             )
     }, [isLoaded])
-
-    console.log(exercises.length, isLoaded);
-    console.log(exercises);
 
     const tagsIncludes = (tags, value) => {
         if (tags) {
@@ -87,12 +83,6 @@ const ExerciseList = () => {
 
 export default ExerciseList;
 
-const Message = styled.div`
-    padding-top: 50px;
-    text-align: center;
-    font-family: var(--primary-font);
-`;
-
 const ListWrapper = styled.div`
     padding-top: 30px;
 `;
@@ -111,16 +101,3 @@ const ButtonWrapper = styled.div`
     justify-content: flex-end;
     margin-right: 100px;
 `;
-/*
-const AddButton = styled.button`
-    position: fixed;
-    border: none;
-    height: 80px;
-    width: 80px;
-    border-radius: 40px;
-    bottom: 80px;
-    margin-right: 20px;
-    font-size: 70px;
-    background-color: var(--primary-color);
-
-`; */

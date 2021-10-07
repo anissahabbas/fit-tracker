@@ -5,12 +5,12 @@ import styled from 'styled-components';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const AddExerciseModalContent = () => {
+    //get all existing exercises and lay them out so that they can be selected and added to the workout from the full page modal
     const { user } = useAuth0();
     const [isLoaded, setIsLoaded] = React.useState(false);
     const [exercises, setExercises] = React.useState([]);
     const [searchValue, setSearchValue] = React.useState('');
 
-    console.log(searchValue, 'search');
     React.useEffect(() => {
         fetch('/user', {
             method: 'POST',
@@ -31,7 +31,6 @@ const AddExerciseModalContent = () => {
         fetch(`/exercises/${userId}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data, 'hello')
                 setExercises(data.data);
                 setIsLoaded(true);
             }
@@ -46,18 +45,22 @@ const AddExerciseModalContent = () => {
     return (
         <>
             {isLoaded && <Wrapper>
-                <SearchBar
-                    setValue={setSearchValue} />
+                <SearchBar setValue={setSearchValue} />
+ 
                 {searchValue.length > 2 ?
                     exercises.map((listItem, ind) => {
-                        if (listItem.name.toLowerCase().includes(searchValue) || tagsIncludes(listItem.tags, searchValue)) {
-                            return (<ListWrapper>
+                        if (listItem.name
+                            .toLowerCase()
+                            .includes(searchValue) ||
+                            tagsIncludes(listItem.tags, searchValue)) {
+                            return (
+                            <ListWrapper>
                                 <ListItem
                                     listItem={listItem}
                                     key={ind}
                                     inModal={true} />
-                            </ListWrapper>)
-                        }
+                            </ListWrapper>
+                            )}
                     }) : (exercises.length) ?
                         <ListWrapper>
                             {exercises.map((listItem) => {
@@ -69,18 +72,13 @@ const AddExerciseModalContent = () => {
                         </ListWrapper>
                         : ''
                 }
-            </Wrapper>}
+            </Wrapper>
+            }
         </>
     )
 }
 
 export default AddExerciseModalContent;
-
-const Message = styled.div`
-    padding-top: 50px;
-    text-align: center;
-    font-family: var(--primary-font);
-`;
 
 const ListWrapper = styled.div`
     padding-top: 30px;
@@ -89,14 +87,4 @@ const ListWrapper = styled.div`
 const Wrapper = styled.div`
     margin-top: 90px;
     z-index: 0;
-`;
-
-const DialogWrapper = styled.div`
-
-`;
-
-const ButtonWrapper = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 100px;
 `;

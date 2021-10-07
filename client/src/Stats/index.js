@@ -12,7 +12,6 @@ const Stats = () => {
         fetch(`/workoutsCompleted/${userId}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setWorkoutData(data.data)
                 setLoaded(true);
             })
@@ -21,10 +20,10 @@ const Stats = () => {
     return (
         <>
             <Header title={'Your Stats'} />
-            <StatDisplay workoutData={workoutData}/>
-            <WorkoutCompletedDisplay 
-            workoutData={workoutData}
-            loaded={loaded}/>
+            <StatDisplay workoutData={workoutData} />
+            <WorkoutCompletedDisplay
+                workoutData={workoutData}
+                loaded={loaded} />
         </>
     )
 };

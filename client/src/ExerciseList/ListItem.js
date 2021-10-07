@@ -23,17 +23,19 @@ const ListItem = ({ listItem, inModal }) => {
                 </NameWrapper>
                 {!inModal &&
                     <TagWrapper>
-                        {listItem.tags && 
-                        listItem.tags.map((tag) => {
-                            return <Tag>{tag}</Tag>
-                        })}
+                        {listItem.tags &&
+                            listItem.tags.map((tag, ind) => {
+                                return <Tag
+                                    key={ind}
+                                >{tag}</Tag>
+                            })}
                     </TagWrapper>}
                 {inModal &&
                     <ModalContentWrapper>
                         <Label>Sets: </Label>
-                        <Input onChange={(e) => setSets(e.target.value)}/>
+                        <Input onChange={(e) => setSets(e.target.value)} />
                         <Label>Reps: </Label>
-                        <Input onChange={(e) => setReps(e.target.value)}/>
+                        <Input onChange={(e) => setReps(e.target.value)} />
                         <AddButton onClick={handleClick}>+</AddButton>
                     </ModalContentWrapper>
                 }

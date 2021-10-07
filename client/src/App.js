@@ -5,7 +5,6 @@ import { useAuth0 } from '@auth0/auth0-react';
 import LandingPage from './LandingPage';
 import ExerciseList from './ExerciseList/index';
 import Footer from './Footer';
-import styled from 'styled-components';
 import WorkoutList from './WorkoutList/index';
 import DoingWorkout from './DoingWorkout';
 import Stats from './Stats/index';
@@ -15,11 +14,7 @@ import { Redirect } from "react-router";
 import CreatingWorkout from './CreatingWorkout/index';
 
 const App = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
-
-  console.log(isAuthenticated);
-  console.log(user);
-  console.log(isLoading, 'load');
+  const { isAuthenticated, isLoading } = useAuth0();
 
   if (isAuthenticated) {
     return (

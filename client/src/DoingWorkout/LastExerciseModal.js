@@ -16,7 +16,6 @@ export default function LastExerciseModal({ id }) {
         fetch(`/exerciseCompleted/${id}/${userId}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setExerciseInfo(data.data)
             })
     }, [])

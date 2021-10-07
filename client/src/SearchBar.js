@@ -6,12 +6,12 @@ const SearchBar = ({ setValue }) => {
     const handleChange = (e) => {
         setValue(e.target.value);
     };
-    
+
     return (
         <Wrapper>
             <TypeAheadWrapper>
                 <TypeAhead
-                onChange={(e) => handleChange(e)}/>
+                    onChange={(e) => handleChange(e)} />
                 <StyledIcon />
             </TypeAheadWrapper>
             <ListWrapper>

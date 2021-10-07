@@ -6,7 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import styled from 'styled-components';
 
-export default function UpdatePopUp({setValue, isComplete}) {
+export default function UpdatePopUp({ setValue, isComplete }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -20,7 +20,7 @@ export default function UpdatePopUp({setValue, isComplete}) {
   return (
     <div>
       <Button onClick={handleClickOpen}
-      style={{ 'color': isComplete ? 'grey' : '' }}
+        style={{ 'color': isComplete ? 'grey' : '' }}
       >
         +
       </Button>
@@ -50,5 +50,4 @@ const Button = styled.button`
   border: none;
   background-color: white;
   font-size: 18px;
-  
 `;

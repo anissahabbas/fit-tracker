@@ -11,12 +11,9 @@ const CurrentExercise = ({ item }) => {
     const [reps, setReps] = React.useState(item.reps);
     const [isComplete, setIsComplete] = React.useState(false);
     const userId = sessionStorage.getItem('userId')
-    console.log(item);
     const { _id, name, tags } = item;
-    console.log(_id);
 
     const handleClick = () => {
-        console.log('click!');
         const newCompletedExercise = {
             exercise_id: _id,
             user_id: userId,
@@ -46,22 +43,26 @@ const CurrentExercise = ({ item }) => {
                 <Notes>{item.notes}</Notes>
                 <WeightWrapper>
                     <WeightTitle>Weight Used: </WeightTitle>
-                    <WeightInput onChange={(e) => setCurrentWeight(e.target.value)} />
+                    <WeightInput
+                        onChange={(e) => setCurrentWeight(e.target.value)} />
                     {isComplete ?
                         <DisabledButton>Complete</DisabledButton> :
-                        <WeightButton onClick={handleClick}>Complete</WeightButton>}
+                        <WeightButton
+                            onClick={handleClick}>Complete</WeightButton>}
                 </WeightWrapper>
 
             </LeftWrapper>
             <InfoWrapper>
                 <SetWrapper>
                     <Sets>Sets: {sets}</Sets>
-                    <UpdatePopUp setValue={setSets}
+                    <UpdatePopUp
+                        setValue={setSets}
                         isComplete={isComplete} />
                 </SetWrapper>
                 <SetWrapper>
                     <Reps>Reps: {reps}</Reps>
-                    <UpdatePopUp setValue={setReps}
+                    <UpdatePopUp
+                        setValue={setReps}
                         isComplete={isComplete} />
                 </SetWrapper>
                 <ModalWrapper>
@@ -107,11 +108,6 @@ const WeightTitle = styled.p`
     margin-bottom: 0px;
 `;
 
-const LeftWrapper = styled.div`
-
-`;
-
-
 const Wrapper = styled.div`
     padding: 10px 0px;
     margin: 10px 20px;
@@ -120,26 +116,25 @@ const Wrapper = styled.div`
     justify-content: space-between;
 `;
 
+const Notes = styled.div`
+    font-size: 12px;
+`;
+
 const Name = styled.div`
     font-size: 20px;
+`;
 
+const LeftWrapper = styled.div`
 `;
 
 const InfoWrapper = styled.div`
 `;
 
 const Sets = styled.div`
-    
 `;
 
 const Reps = styled.div`
-    
-`;
-
-const Notes = styled.div`
-    font-size: 12px;
 `;
 
 const ModalWrapper = styled.div`
-    
 `;

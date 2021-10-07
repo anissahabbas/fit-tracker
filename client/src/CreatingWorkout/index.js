@@ -9,6 +9,7 @@ import { useHistory } from 'react-router-dom';
 import { CurrentWorkoutContext } from '../DoingWorkout/CurrentWorkoutContext';
 
 const CreatingWorkout = () => {
+    //route page for creating a workout
     const { workoutName, exerciseList, tags } = useContext(NewWorkoutContext);
     const userId = sessionStorage.getItem('userId')
     const history = useHistory();
@@ -30,14 +31,11 @@ const CreatingWorkout = () => {
                 "Content-Type": "application/json",
             }
         })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-            })
         history.push('/workoutList');
     }
 
     const handleStart = async () => {
+        //redirect to DoingWorkout and save new workout
         const newWorkout = {
             name: workoutName,
             tags: tags ? tags.replace(/\s/g, '').split(',') : '',
@@ -54,7 +52,6 @@ const CreatingWorkout = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 setCurrentWorkoutId(data.data._id);
                 history.push(`/doingWorkout/${data.data._id}`)
             })

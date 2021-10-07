@@ -30,9 +30,7 @@ export default function CreateNewModal() {
     const handleResponse = (data) => {
         setExerciseList(exerciseList.concat(data))
     }
-    console.log(exerciseList);
-    
-    console.log(sets, reps)
+
     const handleSave = () => {
         const newExercise = {
             name: name,
@@ -119,21 +117,6 @@ export default function CreateNewModal() {
                         variant="standard"
                         onChange={(e) => setReps(e.target.value)}
                     />
-                    {/* <WeightWrapper>
-                        <div>Add Reps: </div>
-                        {
-                            [...Array(Number(sets))].map((el, ind) => {
-                                return <Weight
-                                    key={ind}
-                                    type='text'
-                                    onChange={(e) => {
-                                        reps ?
-                                            setReps(reps.push(e.target.value)) :
-                                            setReps([e.target.value])
-                                    }} />
-                            })
-                        }
-                    </WeightWrapper> */}
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleSave}>Add & Save</Button>
@@ -144,17 +127,6 @@ export default function CreateNewModal() {
     );
 }
 
-const WeightWrapper = styled.div`
-    margin-top: 15px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-`;
-
-const Weight = styled.input`
-    height: 15px;
-    width: 25px;
-`;
 
 const MainButton = styled.button`
     margin-top: 10px;

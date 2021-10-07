@@ -2,19 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import ListItem from './ListItem';
 
-const WorkoutCompletedDisplay = ({loaded, workoutData}) => {
-    console.log(workoutData);
+const WorkoutCompletedDisplay = ({ loaded, workoutData }) => {
+
     return (workoutData ?
         <Wrapper>
             <Title>Workout History</Title>
-           {loaded &&
-           workoutData ?
-            workoutData.map((listItem, ind) => {
-                return <ListItem
-                    listItem={listItem}
-                    key={ind} />
-            }):
-            <div>Complete a workout to add data!</div>}
+            {loaded &&
+                workoutData ?
+                workoutData.map((listItem, ind) => {
+                    return <ListItem
+                        listItem={listItem}
+                        key={ind} />
+                }) :
+                <div>Complete a workout to add data!</div>}
         </Wrapper> :
         ''
     )

@@ -4,7 +4,7 @@ export const NewWorkoutContext = React.createContext(null);
 
 export const NewWorkoutProvider = ({ children }) => {
     const [workoutName, setWorkoutName] = React.useState();
-    const [tags, setTags ] = React.useState();
+    const [tags, setTags] = React.useState();
     const [exerciseList, setExerciseList] = React.useState([]);
 
     return (

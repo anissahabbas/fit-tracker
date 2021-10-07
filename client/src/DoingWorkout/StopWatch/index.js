@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StopWatch = () => {
+    //shown at top of doing workout page
     const [time, setTime] = React.useState(0);
     const [isActive, setIsActive] = React.useState(false);
     const [isPaused, setIsPaused] = React.useState(false);

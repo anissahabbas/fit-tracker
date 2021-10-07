@@ -16,7 +16,6 @@ const DoingWorkout = () => {
     const userId = sessionStorage.getItem('userId');
 
     const handleResponse = (data) => {
-        console.log(data);
         setCurrentWorkoutName(data.data.name);
         setExerciseData(data.data.exerciseList);
         setTags(data.data.tags);
@@ -53,7 +52,6 @@ const DoingWorkout = () => {
             <Header title={currentWorkoutName} />
             <TimerWrapper >
                 <StopWatch />
-               {/*  <Timer /> */}
             </TimerWrapper>
             <ListWrapper>
                 {exerciseData.map((ex, ind) => {
@@ -67,7 +65,6 @@ const DoingWorkout = () => {
                     onClick={handleComplete}
                 >Complete Workout!
                 </CompleteWorkout>
-
             </ButtonWrapper>
         </Wrapper>
     )

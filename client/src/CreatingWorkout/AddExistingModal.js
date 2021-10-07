@@ -42,8 +42,7 @@ export default function AddExistingModal() {
               edge="start"
               color="inherit"
               onClick={handleClose}
-              aria-label="close"
-            >
+              aria-label="close">
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
@@ -57,18 +56,6 @@ export default function AddExistingModal() {
         <ListWrapper>
           <AddExerciseModalContent />
         </ListWrapper>
-        {/* <List>
-          <ListItem button>
-            <ListItemText primary="Phone ringtone" secondary="Titania" />
-          </ListItem>
-          <Divider />
-          <ListItem button>
-            <ListItemText
-              primary="Default notification ringtone"
-              secondary="Tethys"
-            />
-          </ListItem>
-        </List> */}
       </Dialog>
     </div>
   );

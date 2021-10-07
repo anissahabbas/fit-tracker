@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import moment from 'moment'
 
 const ListItem = ({ listItem }) => {
-    console.log(moment(listItem.Date).format("MMMM Do YYYY, h:mm:ss a"))
 
     return (
         <Wrapper>
@@ -24,10 +22,6 @@ const ListItem = ({ listItem }) => {
 }
 
 export default ListItem;
-
-const InfoWrapper = styled.div`
-
-`;
 
 const Wrapper = styled.div`
     font-family: var(--primary-font);
@@ -60,4 +54,7 @@ const Tags = styled.div`
 const Date = styled.div`
     font-size: 12px;
     color: grey;
+`;
+
+const InfoWrapper = styled.div`
 `;

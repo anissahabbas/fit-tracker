@@ -7,7 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { styled } from '@mui/system';
 
-export default function FormDialog({exercises, setExercises}) {
+export default function FormDialog({ exercises, setExercises }) {
   const [open, setOpen] = React.useState(false);
   const [exercise, setExercise] = React.useState('');
   const [tags, setTags] = React.useState('');

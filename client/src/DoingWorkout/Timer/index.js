@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Timer = () => {
+    //not implemented right now, but might add next to stopwatch after bootcamp
+    //might be overkill to have two timers for now
     const [time, setTime] = React.useState('00:00')
     const [isActive, setIsActive] = React.useState(false);
     const [isPaused, setIsPaused] = React.useState(false);
@@ -36,10 +38,11 @@ const Timer = () => {
     return (
         <Wrapper>
             <Input value={time}
-            onChange={(e) => setTime(e.target.value)} />
+                onChange={(e) => setTime(e.target.value)} />
             <ButtonWrapper>
                 <Button onClick={handleReset}>Reset</Button>
-                {(isPaused || !isActive) ? <Button onClick={handleStart}>Start</Button> :
+                {(isPaused || !isActive) ?
+                    <Button onClick={handleStart}>Start</Button> :
                     <Button onClick={handleStop}>Pause</Button>
                 }
             </ButtonWrapper>

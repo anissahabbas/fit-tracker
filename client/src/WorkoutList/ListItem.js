@@ -5,18 +5,21 @@ import styled from 'styled-components';
 const ListItem = ({ listItem }) => {
     return (
         <>
-        <Wrapper to={`/doingWorkout/${listItem._id}`}>
-            <NameWrapper>
-                <Name>{listItem.name}</Name>
-            </NameWrapper>
-            {listItem.tags &&
-            <TagWrapper>
-                {listItem.tags.map((tag) => {
-                    return <Tag>{tag}</Tag>
-                })}
-            </TagWrapper>}
-        </Wrapper>
-        <Notes>{listItem.notes}</Notes>
+            <Wrapper to={`/doingWorkout/${listItem._id}`}>
+                <NameWrapper>
+                    <Name>{listItem.name}</Name>
+                </NameWrapper>
+                {listItem.tags &&
+                    <TagWrapper>
+                        {listItem.tags.map((tag, ind) => {
+                            return <Tag
+                                key={ind}>
+                                {tag}
+                            </Tag>
+                        })}
+                    </TagWrapper>}
+            </Wrapper>
+            <Notes>{listItem.notes}</Notes>
         </>
     )
 };
@@ -58,12 +61,6 @@ const Tag = styled.div`
     border-radius: 5px;
 `;
 
-const modalTag = styled.div`
-    font-size: 10px;
-    background-color: var(--tag-color);
-    padding: 3px 10px;
-    border-radius: 5px;
-`;
 
 const TagWrapper = styled.div`
     display: flex;

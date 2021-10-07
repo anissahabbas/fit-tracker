@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Header from '../Header/index';
 import ListItem from './ListItem';
 import FormDialog from './FormDialog';
+
 const WorkoutList = () => {
     const userId = sessionStorage.getItem('userId');
     const [isLoaded, setIsLoaded] = React.useState(false);
@@ -11,11 +12,9 @@ const WorkoutList = () => {
     const [searchValue, setSearchValue] = React.useState('');
 
     React.useEffect(() => {
-        //const userId = '9999';
         fetch(`/workouts/${userId}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setWorkouts(data.data)
                 setIsLoaded(true)
             });
@@ -27,7 +26,6 @@ const WorkoutList = () => {
         })
     }
 
-    console.log(workouts, 'gey')
     return (
         <>
             <Header title='Workouts' />
@@ -46,12 +44,14 @@ const WorkoutList = () => {
                         }
                     }) :
                     isLoaded &&
-                    workouts.length ? <ListWrapper>
-                        {workouts.map((workout) => {
-                            return <ListItem listItem={workout} />
+                        workouts.length ? <ListWrapper>
+                        {workouts.map((workout, ind) => {
+                            return <ListItem
+                                listItem={workout}
+                                key={ind} />
                         })}
                     </ListWrapper> :
-                    <div>add an exercise!</div>}
+                        <div>add an exercise!</div>}
                 <ButtonWrapper>
                     <FormDialog />
                 </ButtonWrapper>
