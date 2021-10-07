@@ -10,7 +10,7 @@ import { CurrentWorkoutContext } from '../DoingWorkout/CurrentWorkoutContext';
 
 const CreatingWorkout = () => {
     //route page for creating a workout
-    const { workoutName, exerciseList, tags } = useContext(NewWorkoutContext);
+    const { workoutName, exerciseList, setExerciseList, tags } = useContext(NewWorkoutContext);
     const userId = sessionStorage.getItem('userId')
     const history = useHistory();
     const { setCurrentWorkoutId } = useContext(CurrentWorkoutContext);
@@ -31,6 +31,7 @@ const CreatingWorkout = () => {
                 "Content-Type": "application/json",
             }
         })
+        setExerciseList([]);
         history.push('/workoutList');
     }
 
@@ -53,8 +54,10 @@ const CreatingWorkout = () => {
             .then(res => res.json())
             .then(data => {
                 setCurrentWorkoutId(data.data._id);
+                setExerciseList([]);
                 history.push(`/doingWorkout/${data.data._id}`)
             })
+
     }
 
     return (
@@ -77,9 +80,9 @@ const CreatingWorkout = () => {
                     </ListWrapper>}
                 {exerciseList.length ?
                     <ButtonWrapper>
-                    <Button onClick={handleSave}>Save</Button>
-                    <Button onClick={handleStart}>Save & Start</Button>
-                </ButtonWrapper> : ''}
+                        <Button onClick={handleSave}>Save</Button>
+                        <Button onClick={handleStart}>Save & Start</Button>
+                    </ButtonWrapper> : ''}
             </Wrapper>
 
         </>
