@@ -36,7 +36,9 @@ const WorkoutList = () => {
                     searchValue.length > 2 ?
                     workouts.map((listItem, ind) => {
                         if (listItem.name.toLowerCase().includes(searchValue) || tagsIncludes(listItem.tags, searchValue)) {
-                            return (<ListWrapper>
+                            return (
+                            <ListWrapper
+                            key={`w${ind}`}>
                                 <ListItem
                                     listItem={listItem}
                                     key={ind} />

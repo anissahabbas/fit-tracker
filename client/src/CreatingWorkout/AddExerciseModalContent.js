@@ -54,7 +54,8 @@ const AddExerciseModalContent = () => {
                             .includes(searchValue) ||
                             tagsIncludes(listItem.tags, searchValue)) {
                             return (
-                            <ListWrapper>
+                            <ListWrapper
+                            key={`w${ind}`}>
                                 <ListItem
                                     listItem={listItem}
                                     key={ind}
