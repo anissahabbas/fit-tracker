@@ -1,4 +1,4 @@
-# fit Tracker
+# Fit Tracker
 
 ## Fit Tracker is my final project that combines all the technologies I learned while completing the Concordia Full-Stack Web Development Diploma.
 
